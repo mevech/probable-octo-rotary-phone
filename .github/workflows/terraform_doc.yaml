@@ -24,7 +24,7 @@ jobs:
         with:
           output-file: README.md
           output-method: inject
-          find-dir: terraform/modules
+          find-dir: infrastructure/modules
           git-push: true
           indention: 4
 
