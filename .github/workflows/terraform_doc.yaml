@@ -24,7 +24,8 @@ jobs:
         with:
           output-file: README.md
           output-method: inject
-          find-dir: infrastructure/modules
+          find-dir: terraform/modules
+          git-push: true
           indention: 4
 
       - name: Add reaction to comment
