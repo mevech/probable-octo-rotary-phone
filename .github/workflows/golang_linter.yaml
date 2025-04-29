@@ -1,0 +1,49 @@
+name: Golang Linter
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**.go'
+      - 'go.mod'
+      - 'go.sum'
+      - '.github/workflows/golang_linter.yaml'
+
+jobs:
+  golangci:
+    name: Run linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 'stable'
+          cache: true
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v7
+
+  golangci-with-working-directory:
+    name: Run linters
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        working-directory:
+          - ./go-ci-test
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 'stable'
+          cache: true
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v7 
+        with:
+          working-directory: ${{ matrix.working-directory }}
