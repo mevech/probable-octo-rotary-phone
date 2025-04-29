@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -13,5 +14,7 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run(":8080") // listen and serve on 0.0.0.0:8080
+	if err := r.Run(":8080"); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }
