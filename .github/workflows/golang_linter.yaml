@@ -47,4 +47,3 @@ jobs:
         uses: golangci/golangci-lint-action@v7 
         with:
           working-directory: ${{ matrix.working-directory }}
-          args: --config=${{ github.workspace }}/.golangci.yml
